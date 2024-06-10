@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import PersonAdd from "../form/PersonAdd.vue";
+import PersonAdd from "../form/AddPerson.vue";
 defineProps({
   justify: {
     type: String
