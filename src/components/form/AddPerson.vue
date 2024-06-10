@@ -3,14 +3,15 @@
         @finishFailed="onFinishFailed">
 
         <h3>اطلاعات فرم زیر را تکمیل کنید</h3>
-        <p class="modal-des">نام کاربری از قسمت اطلاعات هویتی، امنیت حساب قابل مشاهده می‌باشد</p>
+        <p class="modal-des"> شماره همراه از قسمت اطلاعات هویتی، امنیت حساب قابل مشاهده می‌باشد</p>
 
-        <a-form-item name="username">
-            <a-input v-model:value="formState.username" class="user-input" placeholder="نام کاربری" />
+        <a-form-item name="phoneNumber">
+            <a-input v-model:value="formState.phoneNumber" class="user-input" placeholder="شماره همراه" />
         </a-form-item>
 
         <a-form-item>
-            <a-button class="join-campaign-btn" type="primary" @click.prevent="onSubmit" :loading="loading">شرکت در کمپین</a-button>
+            <a-button class="join-campaign-btn" type="primary" @click.prevent="onSubmit" :loading="loading">شرکت در
+                کمپین</a-button>
         </a-form-item>
     </a-form>
 </template>
@@ -20,15 +21,15 @@ import { notification } from 'ant-design-vue';
 import { reactive, ref } from 'vue';
 
 const formState = reactive({
-    username: '',
+    phoneNumber: '',
 });
 const formRef = ref();
 const loading = ref(false);
 const rules = {
-    username: [
+    phoneNumber: [
         {
             required: true,
-            message: 'لطفا نام کاربری را وارد کنید',
+            message: 'لطفا شماره همراه خود را وارد کنید',
             trigger: 'change',
         }
     ],
@@ -44,10 +45,9 @@ const onSubmit = () => {
     formRef.value.validate()
         .then(() => {
             const dataObj = {
-                job: formState.username,
                 firstName: 'treasuryFn',
                 lastName: 'treasuryLn',
-                phoneNumber: "09120000000",
+                phoneNumber: formState.phoneNumber,
                 email: "treasury@ernyka.com",
                 type: "treasury",
             }
@@ -71,7 +71,7 @@ const onSubmit = () => {
 
                     } else if (data.status === 500) {
                         notification.open({
-                            description: "اطلاعات شما قبلا ثبت شده است",
+                            description: "شماره همراه معتبر نمی باشد",
                             duration: 100,
                         });
 
